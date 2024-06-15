@@ -3,7 +3,7 @@
     <div class="bloc-modal" v-if="show">
       <div class="overlay" @click="$emit('close')"></div>
       <div class="modale">
-        <img @click="$emit('close')" class="close" alt="icons fermer" />
+        <img @click="$emit('close')" class="close" alt="x" src="../../assets//icons/close.png" style="cursor:pointer" />
         <form>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label"
@@ -35,7 +35,7 @@
 
           </div>
           <div class="container connection-google">
-            <img src="" alt="icons google" />
+            <!-- <img src="" alt="icons google" src="../../assets/images/google.png" /> -->
           </div>
         </form>
       </div>
@@ -44,6 +44,8 @@
 </template>
 <script>
 import {UserStore} from '@/components/store/userStore'
+import axios from 'axios';
+
 export default {
   props: ["show"],
   data(){
@@ -53,8 +55,13 @@ export default {
   },
   methods:{
     login(){
-      this.$emit('close')
-      localStorage.setItem('state','connected')
+      // this.$emit('close')
+      // localStorage.setItem('state','connected')
+      try {
+        axios.get('localhost:2000/auth/google')
+      } catch (error) {
+        
+      }
     }
   }
 };

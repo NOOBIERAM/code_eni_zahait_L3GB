@@ -7,11 +7,11 @@ export const backServer = axios.create({
 })
 
 backServer.interceptors.request.use(config => {
-    // let token = localStorage.getItem("token")
-    // if (token) {
-        
-    // }
-    config.headers['Authorization'] = `${auth_key}`
+    let token = localStorage.getItem("Authorization")
+    let refreshToken = localStorage.getItem("RefreshToken")
+    
+    config.headers['Authorization'] = `${token}`
+    config.headers['RefreshToken'] = `${refreshToken}`
     return config
 }, error => {
 
@@ -37,3 +37,4 @@ backServer.interceptors.request.use(config => {
 //         this.$router.push('/')
 //         return Promise.reject(error) 
 // })
+// localhost/auth/google
