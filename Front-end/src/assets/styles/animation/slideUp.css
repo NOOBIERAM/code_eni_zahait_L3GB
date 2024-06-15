@@ -1,0 +1,14 @@
+.slideUp {
+    animation: slide-up 1s cubic-bezier(0.5, 0, 0.5, 1);
+  }
+  
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
