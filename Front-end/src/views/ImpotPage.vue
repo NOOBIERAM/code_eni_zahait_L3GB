@@ -96,8 +96,8 @@ export default {
         async getImpots() {
             try {
                 const auth = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzE4NDEyMDY4LCJleHAiOjE3MTg0MTU2Njh9.tHoKTd7NQ5uO0dPMEPU9CqeNw3q7k3dvmBNsTjKLBPU`
-                const resPaye = await backServer.get('http://192.168.43.19:2000/auth/impots')
-                const resImpaye = await backServer.get('http://192.168.43.19:2000/auth/impots/impaye')
+                const resPaye = await backServer.get('/auth/impots')
+                const resImpaye = await backServer.get('/auth/impots/impaye')
                 if (this.checked) {
                     this.impots = [...resImpaye.data.impots]
                 }

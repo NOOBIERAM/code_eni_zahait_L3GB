@@ -121,7 +121,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import { backServer } from "@/config/backServer";
 export default {
   data() {
     return {
@@ -145,7 +145,7 @@ export default {
   methods: {
     async envoyerDemande() {
       try {
-        const response = await axios.post(`http://192.168.43.19:2000/demande?serviceId=${this.demande}`, {
+        const response = backServer.post(`/demande?serviceId=${this.demande}`, {
           headers: {
             Authorization: `${localStorage.getItem("Authorization")}`,
           },  
@@ -158,7 +158,7 @@ export default {
     },
     async getDemande() {
       try {
-        const response = await axios.get('http://192.168.43.19:2000/mes/demandes', {
+        const response = backServer.get('/mes/demandes', {
           headers: {
             Authorization: `${localStorage.getItem("Authorization")}`,
           },
@@ -170,7 +170,7 @@ export default {
     },
     async getEtatCivile() {
       try {
-        const response = await axios.get("http://192.168.43.19:2000/services", {
+        const response = backServer.get("/services", {
           headers: {
             Authorization: `${localStorage.getItem("Authorization")}`,
           },
