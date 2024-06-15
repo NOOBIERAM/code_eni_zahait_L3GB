@@ -100,12 +100,12 @@
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="avatar-container border  rounded bg-light">
           <label for="picture" class="text-center">
-            <img src="../../assets/icons/addImage.svg" for="picture" alt="Avatar" class="avatar-image">
+            <img src="../../assets/icons/addImage.svg" for="picture" alt="Avatar" id="image" class="avatar-image">
 
           </label>
           <input type="file" id="picture" class="d-none profile" name="picture" @change="imageChanged($event)" />
         </div>
-        <p class="text-danger my-4" v-if="true">piece jointe non valide</p>
+        <p class="text-danger my-4" v-if="erreurImage">piece jointe non valide</p>
         <p class="text-danger my-4" v-if="erreurchamp">veuillez bien remplir les champs</p>
       </div>
 
@@ -159,6 +159,7 @@ export default {
 
         } else {
           this.disableBtn = true
+          console.log('data');
         }
       },
       deep: true
@@ -194,10 +195,15 @@ export default {
       formImg.append('image', img)
       await backServer.post('/ocr/process-image', formImg).then((res) => {
         if (res.data.documentNumber != '') {
+          console.log('fou');
           this.formData.identity = res.data.documentNumber
         } else {
+          console.log('faa');
           this.erreurImage = true
         }
+      })
+      .catch((err)=>{
+        console.log(err);
       })
     },
     previous(){
